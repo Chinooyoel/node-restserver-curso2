@@ -18,7 +18,15 @@ app.post("/usuario", (req, res) => {
 
     let body = req.body;
 
-    res.json(body)
+    if( body.nombre === undefined){
+        res.status(400).json({
+            codigo: 400,
+            error: "Es necesario el nombre"
+        })
+    }else {
+        res.json(body)
+    }
+   
 
 })
 app.put("/", (req, res) => {
