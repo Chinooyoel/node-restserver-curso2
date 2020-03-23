@@ -21,7 +21,7 @@ let rutaDB;
 if( process.env.NODE_DEV === "desarrollo" ){
     rutaDB = 'mongodb://localhost:27017/cafe'
 }else {
-    rutaDB = "mongodb+srv://yoel:zwACFTmxyqZD1RdH@cluster0-su75x.mongodb.net/cafe"
+    rutaDB = process.env.MONGO_URL;
 }
 
 process.env.RUTADB = rutaDB;
