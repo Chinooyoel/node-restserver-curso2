@@ -3,6 +3,7 @@ const app = express();
 const bcrypt = require("bcrypt");
 const Usuario = require("../models/usuario");
 const _ = require("underscore");
+const { verificarToken, verificarRole } = require("../middleware/autenticacion");
 
 app.get("/", (req, res) => {
 
@@ -10,7 +11,7 @@ app.get("/", (req, res) => {
 
 })
 
-app.get("/usuario", ( req, res ) => {
+app.get("/usuario", verificarToken, ( req, res ) => {
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -37,7 +38,7 @@ app.get("/usuario", ( req, res ) => {
             })
             
 })
-app.post("/usuario", (req, res) => {
+app.post("/usuario", [verificarToken, verificarRole], (req, res) => {
 
     let body = req.body;
 
@@ -80,7 +81,7 @@ app.put("/", (req, res) => {
 })
 
 
-app.put("/usuario/:id",  ( req, res ) => {
+app.put("/usuario/:id", [verificarToken, verificarRole],  ( req, res ) => {
 
     let id = req.params.id;
     let body = _.pick(req.body, ["nombre", "email", "img", "role", "estado"]);
@@ -122,7 +123,7 @@ app.delete("/usuario/:id", (req, res) => {
 })
 */
 //borrando el documento digitalmente
-app.delete("/usuario/:id", (req, res) => {
+app.delete("/usuario/:id", [verificarToken, verificarRole], (req, res) => {
     let id = req.params.id;
 
     let desactivado = { estado : false }
