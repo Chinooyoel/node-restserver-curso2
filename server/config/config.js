@@ -41,3 +41,9 @@ if( process.env.NODE_DEV === "desarrollo" ){
 }
 
 process.env.RUTADB = rutaDB;
+
+// =====================================
+//   GOOGLE CLIENT ID
+// =====================================
+
+process.env.CLIENT_ID = process.env.CLIENT_ID || "779978261703-r2nmrd1ngnjnudn7iug7cldof0o8sk3e.apps.googleusercontent.com"
