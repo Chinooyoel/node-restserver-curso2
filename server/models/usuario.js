@@ -36,7 +36,7 @@ let usuarioSchema = new Schema({
         required: false
     },
     estado : {
-        type : String,
+        type : Object,
         default: true
     }
 })
