@@ -16,7 +16,7 @@ app.get("/usuario", verificarToken, ( req, res ) => {
     let desde = req.query.desde || 0;
     desde = Number(desde);
 
-    Usuario.find({ estado: true}, "nombre email rol estado google")
+    Usuario.find({ estado:true }, "nombre email role estado google")
             .skip(desde)
             .limit(5)
             .exec( (err, usuarios ) => {
@@ -28,6 +28,7 @@ app.get("/usuario", verificarToken, ( req, res ) => {
                }
 
             Usuario.countDocuments({estado: true}, (err, contador ) => {
+                
                 res.json({
                     ok: true,
                     contador: contador,
